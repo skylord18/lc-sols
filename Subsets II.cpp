@@ -1,28 +1,25 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 class Solution {
 public:
-    void func(int index, vector<vector<int>>&ans,vector<int>&ds,vector<int>&nums){
-        if(index == nums.size()){
-            if(count(ans.begin(), ans.end(),ds)>0){
-                return;
-            }else{
-                ans.push_back(ds);
-                return;
-            }
-        }
-        ds.push_back(nums[index]);
-        func(index+1,ans,ds,nums);
-        ds.pop_back();
-        func(index+1,ans,ds,nums);
-        
-    }
+	void findSubsets(int idx, vector<vector<int>> ans, vector<int>ds, vector<int>nums) {
+		ans.push_back(ds);
+		for (int i = idx; i < nums.size(); ++i)
+		{
+			/* code */
+			if (idx != 0 && nums[i - 1] == nums[i])
+				continue;
+			ds.push_back(nums[i]);
+			findSubsets(i + 1, ans, ds, nums);
+			ds.pop_back();
+		}
+	}
 public:
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        vector<vector<int>>ans;
-        vector<int>ds;
-        sort(nums.begin(),nums.end());
-        func(0,ans,ds,nums);
-        return ans;
-    }
+	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+		vector<vector<int>>ans;
+		vector<int>ds;
+		sort(nums.begin(), nums.end());
+		findSubsets(0, ans, ds, nums);
+		return ans;
+	}
 };
