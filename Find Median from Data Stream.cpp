@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+#include<bits/stdc++.h>
+using namespace std;
 class MedianFinder {
 public:
 	// we will use heaps (min and max) to get the median using . We will try to keep them balanced on basis of their size so that at    end we will have the medians at top.
