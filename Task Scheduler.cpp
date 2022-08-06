@@ -1,0 +1,34 @@
+// A C/C++ Program to generate OTP (One Time Password)
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+	int leastInterval(vector<char>& tasks, int n) {
+		unordered_map<char, int>mp;
+		int count = 0;
+		for (auto e : tasks)
+		{
+			mp[e]++;
+			count = max(count, mp[e]);
+		}
+
+		int ans = (count - 1) * (n + 1);
+		for (auto e : mp) if (e.second == count) ans++;
+		return max((int)tasks.size(), ans);
+	}
+	long long taskSchedulerII(vector<int>& tasks, int space) {
+		map<int, int> mpp;
+		int cnt = 0;
+		for (auto it : tasks) {
+			mpp[it]++;
+			cnt = max(cnt, mpp[it]);
+		}
+		int ans = (cnt - 1) * (space - 1);
+		for (auto it : mpp) {
+			if (it.second == cnt)
+				ans++;
+		}
+		return max((int)tasks.size(), ans);
+	}
+};
