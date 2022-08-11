@@ -1,7 +1,9 @@
-// A C/C++ Program to generate OTP (One Time Password)
-
-#include<bits/stdc++.h>
+#include <algorithm>
+#include <bits/stdc++.h>
+#include <unordered_map>
+#include <unordered_set>
 using namespace std;
+
 class Solution {
 public:
 	long long countBadPairs(vector<int>& nums) {
