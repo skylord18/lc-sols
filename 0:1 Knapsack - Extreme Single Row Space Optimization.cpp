@@ -14,19 +14,19 @@ int f(int idx, int Wt, vector<int>&weight, vector<int>&value, int n, vector<vect
 }
 int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) {
 	// Write your code here
-	vector<int> prev (maxWeight + 1, 0) , curr(maxWeight + 1, 0);
+	vector<int> prev (maxWeight + 1, 0)
 	for (int i = weight[0]; i <= maxWeight; i++)prev[i] = value[0];
 	for (int idx = 1; idx < n; idx++) {
-		for (int W = 0; W <= maxWeight; W++) {
+		for (int W = maxWeight; W >= 0; W--) {
 
 			int notTake = prev[W];
 			int take = INT_MIN;
 			if (weight[idx] <= W)
 				take = value[idx] + prev[W - weight[idx]];
-			curr[W] = max(take, notTake);
+			prev[W] = max(take, notTake);
 
 		}
-		prev = curr;
+
 	}
 	return prev[maxWeight];
 }
