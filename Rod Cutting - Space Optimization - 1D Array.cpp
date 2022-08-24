@@ -13,17 +13,17 @@ int cutRod(vector<int> &price, int n) {
 	// Write your code here.
 	int sz = price.size();
 	//vector<vector<int>>dp(sz, vector<int>(n + 1, 0));
-	vector<int>prev(n + 1, 0), curr(n + 1, 0);
+	vector<int>prev(n + 1, 0)
 	for (int j = 0; j <= n; j++)prev[j] = price[0] * j;
 	for (int idx = 1; idx < n; idx++) {
 		for (int N = 0; N <= n; N++) {
 			int notTake = prev[N];
 			int take = INT_MIN;
 			int rodLength = idx + 1;
-			if (rodLength <= N)take = price[idx] + curr[N - rodLength];
-			cur[N] = max(take, notTake);
+			if (rodLength <= N)take = price[idx] + prev[N - rodLength];
+			prev[N] = max(take, notTake);
 		}
-		prev = curr;
+
 	}
 	return prev[n];
 }

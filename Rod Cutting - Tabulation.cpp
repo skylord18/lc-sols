@@ -12,7 +12,7 @@ int f(int idx, int N, vector<int>&price, vector<vector<int>>&dp) {
 int cutRod(vector<int> &price, int n) {
 	// Write your code here.
 	int sz = price.size();
-	vector<vector<int>>dp(sz, vector<int>(n + 1, 0));
+	vector<vector<int>>dp(n, vector<int>(n + 1, 0));
 	for (int j = 0; j <= n; j++)dp[0][j] = price[0] * j;
 	for (int idx = 1; idx < n; idx++) {
 		for (int N = 0; N <= n; N++) {
@@ -23,5 +23,5 @@ int cutRod(vector<int> &price, int n) {
 			dp[idx][N] = max(take, notTake);
 		}
 	}
-	return dp[sz - 1][n];
+	return dp[n - 1][n];
 }
